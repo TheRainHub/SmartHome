@@ -1,0 +1,4 @@
+Téma: Smart Home (virtuální simulace inteligentního domu)
+Stručný popis: Simulace domácnosti s místnostmi, chytrými zařízeními a členy rodiny.
+Zařízení mění stavy, generují události (senzory, poruchy), osoby reagují podle oprávnění.
+Výstupy: textové reporty (konfigurace domu, události, aktivity, spotřeba).
