@@ -12,4 +12,3 @@ public class SportEquipmentPool {
         return instance;
     }
 }
-// hej a mame bazen????????

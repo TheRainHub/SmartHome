@@ -12,13 +12,11 @@ public class HouseConfigurationBuilder {
         this.house = new House(id, name);
     }
 
-//    plus patro
     public void buildFloor(String floorId, int number) {
         Floor floor = new Floor(floorId, number);
         house.addFloor(floor);
     }
 
-   //pokoj
     public void buildRoom(String floorId, String roomId, String roomName) {
         Floor targetFloor = house.getFloors().stream()
                 .filter(f -> f.getId().equals(floorId))

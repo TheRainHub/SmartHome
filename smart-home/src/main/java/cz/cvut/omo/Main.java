@@ -2,11 +2,10 @@ package cz.cvut.omo;
 
 import cz.cvut.omo.builder.HouseConfigurationBuilder;
 import cz.cvut.omo.devices.TV;
-import cz.cvut.omo.model.Device;
 import cz.cvut.omo.model.House;
 import cz.cvut.omo.residents.Child;
 import cz.cvut.omo.residents.Father;
-import cz.cvut.omo.state.IdleState;
+
 
 public class Main {
     public static void main(String[] args) {
