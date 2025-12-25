@@ -1,5 +1,9 @@
 package cz.cvut.omo.residents;
 
-public class ResidentState {
-    
+
+public enum ResidentState {
+    ADULT,
+    CHILD,
+    ENIMAL,
+    SENIOR
 }

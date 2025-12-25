@@ -1,5 +1,11 @@
 package cz.cvut.omo.residents;
 
-public class FamilyRole {
-    
+
+public enum FamilyRole {
+    FATHER,
+    MOTHER,
+    SON,
+    DAUGHTER,
+    GRANDMOTHER,
+    GRANDFATHER
 }

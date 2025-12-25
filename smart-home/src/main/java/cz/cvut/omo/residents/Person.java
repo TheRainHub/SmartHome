@@ -1,4 +1,11 @@
 package cz.cvut.omo.residents;
 
-public class Person {
+
+import cz.cvut.omo.model.Resident;
+
+public abstract class Person extends Resident {
+    
+    public Person(String id, String name) {
+        super(id, name);
+    }
 }

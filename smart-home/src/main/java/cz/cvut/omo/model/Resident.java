@@ -1,6 +1,6 @@
 package cz.cvut.omo.model;
 
-public class Resident {
+public abstract class Resident {
 
     private final String id;
     private final String name;
@@ -22,4 +22,10 @@ public class Resident {
     public String getId() { return id; }
 
     public String getName() { return name; }
+
+    public abstract float getRepairSkill();
+
+    public boolean canRepair() {
+        return getRepairSkill() > 0;
+    }
 }
