@@ -3,8 +3,9 @@ package cz.cvut.omo;
 import cz.cvut.omo.builder.HouseConfigurationBuilder;
 import cz.cvut.omo.devices.TV;
 import cz.cvut.omo.model.House;
-import cz.cvut.omo.residents.Child;
-import cz.cvut.omo.residents.Father;
+import cz.cvut.omo.residents.*;
+import cz.cvut.omo.factory.PersonFactory;
+import cz.cvut.omo.factory.AnimalFactory;
 
 
 public class Main {
@@ -22,22 +23,35 @@ public class Main {
         System.out.println("Floors: " + house.getFloors().size());
         System.out.println("Rooms on floor-1: " + house.getFloors().get(0).getRooms().size());
 
+        System.out.println("\n===== Testing Factory Pattern =====");
+        
+        Person father = PersonFactory.createPerson("1", "John", FamilyRole.FATHER);
+        Person mother = PersonFactory.createPerson("2", "Mary", FamilyRole.MOTHER);
+        Person son = PersonFactory.createPerson("3", "Tommy", FamilyRole.SON);
+        Person daughter = PersonFactory.createPerson("4", "Anna", FamilyRole.DAUGHTER);
+        
+        System.out.println("Created via PersonFactory:");
+        System.out.println("  - " + father.getName() + " (repair skill: " + father.getRepairSkill() + ")");
+        System.out.println("  - " + mother.getName() + " (repair skill: " + mother.getRepairSkill() + ")");
+        System.out.println("  - " + son.getName() + " (repair skill: " + son.getRepairSkill() + ")");
+        System.out.println("  - " + daughter.getName() + " (repair skill: " + daughter.getRepairSkill() + ")");
+        
+        Animal dog = AnimalFactory.createAnimal("5", "Bobik", AnimalRole.DOG);
+        Animal cat = AnimalFactory.createAnimal("6", "Mursik", AnimalRole.CAT);
+        
+        System.out.println("\nCreated via AnimalFactory:");
+        System.out.println("  - " + dog.getName());
+        System.out.println("  - " + cat.getName());
 
+        System.out.println("\n===== Testing TV with Factory-created residents =====");
         TV tv = new TV("Samsung Hall");
-        Father father = new Father("1", "John");
-        Child child = new Child("2", "Tommy");
 
-        tv.use(child);
-        tv.use(child);
-        tv.use(child);
-        tv.use(child);
-        tv.use(father);
-        tv.use(father);
-        tv.use(father);
-        tv.use(father);
-        tv.use(father);
+        tv.use((Child) son);
+        tv.use((Child) son);
+        tv.use((Father) father);
+        tv.use((Father) father);
 
-        tv.fix(child);
-        tv.fix(father);
+        tv.fix((Child) son);
+        tv.fix((Father) father);
     }
 }
