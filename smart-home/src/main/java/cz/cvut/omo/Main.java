@@ -4,6 +4,8 @@ import cz.cvut.omo.builder.HouseConfigurationBuilder;
 import cz.cvut.omo.devices.TV;
 import cz.cvut.omo.model.House;
 import cz.cvut.omo.residents.*;
+import cz.cvut.omo.sport.Bicycle;
+import cz.cvut.omo.sport.SportEquipmentPool;
 import cz.cvut.omo.factory.PersonFactory;
 import cz.cvut.omo.factory.AnimalFactory;
 
@@ -53,5 +55,23 @@ public class Main {
 
         tv.fix((Child) son);
         tv.fix((Father) father);
+        System.out.println("\n==================================");
+
+        System.out.println("\n===== Testing Sport Equipment Pool =====");
+        
+        SportEquipmentPool garage = SportEquipmentPool.getInstance();
+        
+        Bicycle bike1 = garage.getEquipment(Bicycle.class); 
+        
+        Bicycle bike2 = garage.getEquipment(Bicycle.class);
+        
+        Bicycle bike3 = garage.getEquipment(Bicycle.class);
+        garage.returnEquipment(bike1);
+        
+        Bicycle bike4 = garage.getEquipment(Bicycle.class);
+
+        garage.printPool();
+        //Garage: No available Bicycle
+        System.out.println("\n==================================");
     }
 }
