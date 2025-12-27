@@ -4,10 +4,14 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
+import cz.cvut.omo.residents.Person;
 
 public class SportEquipmentPool {
 
     private static SportEquipmentPool instance;
+    private Map<Class<? extends SportEquipment>, Queue<SportEquipment>> availableEquipment = new HashMap<>();
+    private Map<Class<? extends SportEquipment>, Queue<SportEquipment>> inUseEquipment = new HashMap<>();
+    private Map<SportEquipment, Person> borrowedBy = new HashMap<>();
 
     private SportEquipmentPool() {
         initPool();
@@ -19,8 +23,6 @@ public class SportEquipmentPool {
         }
         return instance;
     }
-
-    private Map<Class<? extends SportEquipment>, Queue<SportEquipment>> availableEquipment = new HashMap<>();
 
     private void initPool() {
         Queue<SportEquipment> bikes = new LinkedList<>();
@@ -60,19 +62,49 @@ public class SportEquipmentPool {
         return type.cast(item);
     }
 
-    public void returnEquipment(SportEquipment item){
+    public <T extends SportEquipment> T borrowEquipment(Person user, Class<T> type) {
+        Queue<SportEquipment> available = availableEquipment.get(type);
+
+        if (available == null || available.isEmpty()) {
+            System.out.println("Garage: No available " + type.getSimpleName() + " for " + user.getName());
+            return null;
+        }
+
+        SportEquipment item = available.poll();
+        
+        inUseEquipment.computeIfAbsent(type, k -> new LinkedList<>()).offer(item);
+        
+        borrowedBy.put(item, user);
+        
+        System.out.println("Garage: " + user.getName() + " borrowed -> " + item.getName());
+        
+        return type.cast(item);
+    }
+
+    public void returnEquipment(SportEquipment item) {
         if (item == null) {
             return;
         }
 
         Class<? extends SportEquipment> type = item.getClass();
 
-        Queue<SportEquipment> queue = availableEquipment.get(type);
-
-        if (queue != null) {
-            queue.offer(item);
-            System.out.println("Garage: Return -> " + item.getName());
+        Queue<SportEquipment> inUse = inUseEquipment.get(type);
+        if (inUse != null) {
+            inUse.remove(item);
         }
+        
+        Person user = borrowedBy.remove(item);
+        
+        Queue<SportEquipment> available = availableEquipment.get(type);
+        if (available != null) {
+            available.offer(item);
+            String returnedBy = (user != null) ? user.getName() : "Unknown";
+            System.out.println("Garage: " + returnedBy + " returned -> " + item.getName());
+        }
+    }
+
+    public Person getBorrower(SportEquipment item) {
+        return borrowedBy.get(item);
     }
 
     public void printPool() {
