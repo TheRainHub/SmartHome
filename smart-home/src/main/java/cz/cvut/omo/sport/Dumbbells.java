@@ -1,5 +1,7 @@
 package cz.cvut.omo.sport;
 
-public class Dumbbells {
-    
+public class Dumbbells extends SportEquipment{
+    public Dumbbells(String name) {
+        super(name);
+    }
 }

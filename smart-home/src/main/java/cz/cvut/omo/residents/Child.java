@@ -12,4 +12,18 @@ public class Child extends Person {
     public float getRepairSkill() {
         return 0.0f; 
     }
+
+    public void play() {
+        System.out.println(getName() + " is playing.");
+    }
+    
+    public void watchTV() {
+        System.out.println(getName() + " is watching TV.");
+    }
+
+    public void sleep() {
+        System.out.println(getName() + " is sleeping.");
+    }
+
+    
 }
