@@ -13,7 +13,9 @@ public class Event {
         this.message = message;
     }
 
-    public EventType getType() { return type; }
+    public EventType getType() {
+        return type; 
+    }
     public Object getSource() { return source; }
     public String getMessage() { return message; }
     

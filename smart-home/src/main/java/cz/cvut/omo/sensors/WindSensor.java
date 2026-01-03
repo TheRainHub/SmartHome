@@ -1,6 +1,8 @@
 package cz.cvut.omo.sensors;
 
+import cz.cvut.omo.event.Event;
 import cz.cvut.omo.event.EventType;
+
 
 public class WindSensor extends Sensor {
 
@@ -16,8 +18,8 @@ public class WindSensor extends Sensor {
     public void checkStatus() {
         if (windSpeed > STORM_THRESHOLD) {
             System.out.println("Wind sensor detects storm warning!");
-            notifyObservers(new Event(EventType.WEATHER_ALERT, this, "Storm warning!" + 
-            windSpeed));
+            notifyObservers(new Event(EventType.WEATHER_ALERT,
+                    this, "Storm warning!" + windSpeed));
         }
     }
 }
