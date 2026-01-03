@@ -25,5 +25,20 @@ public class Child extends Person {
         System.out.println(getName() + " is sleeping.");
     }
 
+    public void eat() {
+        System.out.println(getName() + " is eating.");
+    }
+    
+    public void washDishes(cz.cvut.omo.devices.DishWasher dishwasher) {
+        if (dishwasher != null) {
+            System.out.println(getName() + " is loading the dishwasher " + dishwasher.getName());
+            if (!dishwasher.isRunning()) {
+                dishwasher.loadDishes(10);
+                dishwasher.startWashing(cz.cvut.omo.devices.DishWasher.WashProgram.ECO);
+            }
+        } else {
+            System.out.println(getName() + " is washing dishes by hand (no dishwasher found).");
+        }
+    }
     
 }

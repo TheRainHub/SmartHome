@@ -40,4 +40,27 @@ public class House {
     public String getId() { return id; }
 
     public String getName() { return name; }
+
+    public <T extends Device> T findDevice(Class<T> type) {
+        return devices.stream()
+                .filter(d -> type.isInstance(d))
+                .map(type::cast)
+                .findFirst()
+                .orElse(null);
+    }
+
+    public <T extends Resident> T findResident(Class<T> type) {
+        return residents.stream()
+                .filter(r -> type.isInstance(r))
+                .map(type::cast)
+                .findFirst()
+                .orElse(null);
+    }
+    
+    public <T extends Resident> List<T> findResidents(Class<T> type) {
+        return residents.stream()
+                .filter(r -> type.isInstance(r))
+                .map(type::cast)
+                .toList();
+    }
 }

@@ -6,5 +6,6 @@ public enum EventType {
     WATER_LEAK,
     TEMPERATURE_ALERT,
     WEATHER_ALERT,
-    DEVICE_NEEDED
+    DEVICE_NEEDED,
+    MOTION_DETECTED
 }
