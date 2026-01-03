@@ -1,5 +1,7 @@
 package cz.cvut.omo.observer;
 
-public class Observer {
-    
+import cz.cvut.omo.event.Event;
+
+public interface Observer {
+    void update(Event event);
 }
